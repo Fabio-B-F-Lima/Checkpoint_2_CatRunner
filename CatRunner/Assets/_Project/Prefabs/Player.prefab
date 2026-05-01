@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 476b85a1d009b0b48b101c8aefa530c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControls
+  stepDir: 1.37
 --- !u!114 &5048923840190591690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   playerMesh: {fileID: 8000629024551343748}
-  speed: 0
+  speed: 5
   stepSpeed: 5
   currentLane: 0
   laneLimit: 1

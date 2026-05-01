@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
         
     }
 
-    public void ChangeLane(int direction)
+    public void ChangeLane(float direction)
     {
         if(direction < 0)
         {

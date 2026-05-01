@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerControls : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class PlayerControls : MonoBehaviour
     private Vector2 touchEnd;
 
     Player player;
+
+    [SerializeField] float stepDir;
 
     private void Awake()
     {
@@ -44,11 +47,11 @@ public class PlayerControls : MonoBehaviour
                 // MOVIMENTO HORIZONTAL  (ESQUERDA OU DIREITA)
                 if (touchStart.x < touchEnd.x) 
                 {
-                    player.ChangeLane(1);
+                    player.ChangeLane(stepDir);
                 }
                 else
                 {
-                    player.ChangeLane(-1);
+                    player.ChangeLane(-stepDir);
                 }
 
             }

@@ -11,6 +11,9 @@ public class RoadManager : MonoBehaviour
             Vector3 p = other.transform.position;
             p.z += step;
             other.transform.position = p;
+
+            
+            other.GetComponent<ObstacleRoadSpawn>().GenerateObstacles();
         }
     }
 
