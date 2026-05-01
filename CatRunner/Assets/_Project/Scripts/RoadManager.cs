@@ -6,16 +6,19 @@ public class RoadManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enter")
+        if (other.CompareTag("Enter"))
         {
             Vector3 p = other.transform.position;
             p.z += step;
             other.transform.position = p;
 
-            
-            other.GetComponent<ObstacleRoadSpawn>().GenerateObstacles();
+            RoadContentSpawner spawner =
+                other.GetComponentInParent<RoadContentSpawner>();
+
+            if (spawner != null)
+            {
+                spawner.GenerateContent();
+            }
         }
     }
-
-
 }
