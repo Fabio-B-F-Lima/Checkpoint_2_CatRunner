@@ -1,16 +1,30 @@
+using Unity.VectorGraphics;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] Button quitButton, playButton;
     void Start()
     {
-        
+        playButton.onClick.AddListener(PlayGame);
+        quitButton.onClick.AddListener(QuitGame);
     }
 
-    // Update is called once per frame
+   
     void Update()
     {
         
+    }
+    void PlayGame()
+    {
+        SceneManager.LoadScene("GameScene");
+    }
+    void QuitGame()
+    {
+        Application.Quit();
+        UnityEditor.EditorApplication.isPlaying = false;
     }
 }
