@@ -1,5 +1,4 @@
-using System;
-using System.Runtime.CompilerServices;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,7 +12,7 @@ public class UIManager : MonoBehaviour
     [Header("Canvas HUD")]
     [SerializeField] private Text fishCoinNumberText;
     [SerializeField] private Canvas HUD;
-    [SerializeField] private Button pauseButton, closePauseScreenButton, restartButton, quitButton;
+    [SerializeField] private Button pauseButton, closePauseScreenButton, restartButton, backToMenuButton, quitButton;
     [SerializeField] private GameObject pausePanel;
     
     void Start()
@@ -26,7 +25,8 @@ public class UIManager : MonoBehaviour
         pauseButton.onClick.AddListener(PauseGame);
         closePauseScreenButton.onClick.AddListener(ClosePauseScreen);
         restartButton.onClick.AddListener(RestartGame);
-        quitButton.onClick.AddListener(BackToMenu);
+        backToMenuButton.onClick.AddListener(BackToMenu);
+        quitButton.onClick.AddListener(QuitGame);
     }
 
     
@@ -77,5 +77,9 @@ public class UIManager : MonoBehaviour
     private void BackToMenu()
     {
         SceneManager.LoadScene("MenuScene");
+    }
+    private void QuitGame()
+    {
+      Application.Quit();   
     }
 }
