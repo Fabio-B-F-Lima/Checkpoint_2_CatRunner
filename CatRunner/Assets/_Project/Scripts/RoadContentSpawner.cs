@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class RoadContentSpawner : MonoBehaviour
 {
-    [Header("Obstáculos")]
+    [Header("Obstacles")]
     [SerializeField] private Transform[] obstaclePoints;
     [SerializeField] private GameObject[] obstacles;
 
-    [Header("Moedas")]
+    [Header("coins")]
     [SerializeField] private Transform[] coinPoints;
     [SerializeField] private GameObject[] coinPrefabs;
 
@@ -37,7 +37,7 @@ public class RoadContentSpawner : MonoBehaviour
     {
         foreach (Transform point in coinPoints)
         {
-            if (Random.value > 0.3f)
+            if (Random.value > 0.5f)
             {
                 int index = Random.Range(0, coinPrefabs.Length);
                 Instantiate(

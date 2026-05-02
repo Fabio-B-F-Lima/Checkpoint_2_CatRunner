@@ -6,7 +6,7 @@ public class DestroyObjects : MonoBehaviour
     {
         if (
             other.CompareTag("Obstacles") ||
-            other.CompareTag("Coin")
+            other.CompareTag("Coin") || other.CompareTag("Destroy")
         )
         {
             Destroy(other.gameObject);

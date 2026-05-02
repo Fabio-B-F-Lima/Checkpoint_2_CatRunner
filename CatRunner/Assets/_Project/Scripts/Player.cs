@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
 
 
     private Vector3 currentPosition;
-
+    private bool isDead = false;
     private Animator anim;
     private Rigidbody rb;
 
@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
             Move();
             anim.SetBool("pInGame", GameManager.inGame);
         }
+
     }
 
     bool OnGround()
@@ -45,13 +46,13 @@ public class Player : MonoBehaviour
 
     private void Move()
     {        
-        // MOVE NAS LATERAIS
+        
         currentPosition = new Vector3(currentLane, currentPosition.y, currentPosition.z);
 
-        // MOVE PARA FRENTE
+        
         currentPosition.z += speed * Time.deltaTime;
 
-        // ATUALIZA A POSICAO
+        
         transform.position = Vector3.MoveTowards(transform.position, currentPosition, stepSpeed * Time.deltaTime);
 
         
@@ -94,5 +95,4 @@ public class Player : MonoBehaviour
             Gizmos.DrawSphere(sensorGround.position, sensorRadius);
         }       
     }
-
 }

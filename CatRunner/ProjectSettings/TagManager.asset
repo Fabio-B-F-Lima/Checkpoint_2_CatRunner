@@ -7,6 +7,7 @@ TagManager:
   - Enter
   - Obstacles
   - Coin
+  - Destroy
   layers:
   - Default
   - TransparentFX
