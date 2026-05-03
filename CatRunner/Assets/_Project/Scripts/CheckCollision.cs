@@ -2,20 +2,9 @@ using UnityEngine;
 
 public class CheckCollision : MonoBehaviour
 {
-  
-    private void Start()
-    {
-       
-    }
+    [SerializeField] Player player;
+    [SerializeField] float speedIncrease;
     public bool isDead = false;
-
-    private void Update()
-    {
-        if (isDead)
-        {
-            Time.timeScale = 0.0f;
-        }
-    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -32,5 +21,12 @@ public class CheckCollision : MonoBehaviour
             GameManager.Instance.AddCoin(1);
             Destroy(other.gameObject);
         }
+        else if (other.gameObject.tag == "Enter" && player.speed < player.maxSpeed)
+        {
+            player.speed += speedIncrease;
+            player.stepSpeed += 0.05f;
+        }
+
     }
+
 }

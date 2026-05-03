@@ -1,11 +1,12 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static int delayStartGame = 3;
     public static bool inGame = false;
-    public static int fishCoins;
+    public static int fishCoins = 0, highscore = 0;
 
     public static GameManager Instance;
     private void Awake()
@@ -16,6 +17,12 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(StartGame());
+    }
+
+
+    private void Update()
+    {
+        SetHighscore();
     }
 
     IEnumerator StartGame()
@@ -34,6 +41,14 @@ public class GameManager : MonoBehaviour
     public void AddCoin( int c)
     {
         fishCoins += c;
-        print(fishCoins);
+       
+    }
+
+    public void SetHighscore()
+    {
+        if (fishCoins > highscore)
+        {
+            highscore = fishCoins;
+        }
     }
 }

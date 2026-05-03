@@ -4,8 +4,9 @@ public class Player : MonoBehaviour
 {
     [Header("Player Settings")]
     [SerializeField] private GameObject playerMesh;
-    [SerializeField] private float speed;
-    [SerializeField] private float stepSpeed;
+    public float speed = 5f;
+    public float maxSpeed = 9f;
+    public float stepSpeed;
     [SerializeField] private float currentLane = 0;
     [SerializeField] private float laneLimit = 1;
 

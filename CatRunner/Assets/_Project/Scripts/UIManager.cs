@@ -14,11 +14,24 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Canvas HUD;
     [SerializeField] private Button pauseButton, closePauseScreenButton, restartButton, backToMenuButton, quitButton;
     [SerializeField] private GameObject pausePanel;
+
+    [Header("Canvas Lose Screen")]
+    [SerializeField] private Canvas LoseScreen;
+
+    [SerializeField] private CheckCollision checkCollision;
+    [SerializeField] private Button lSPlayAgainButton, lSBackToMenu, lSQuitGame;
+    [SerializeField] private Text textHighScoreNumber; 
+
+
     
     void Start()
     {
+        Time.timeScale = 1.0f;
+
         canvasDelay.enabled = true;
         HUD.enabled = false;
+        LoseScreen.enabled = false;
+        
         pausePanel.SetActive(false);
 
 
@@ -27,12 +40,21 @@ public class UIManager : MonoBehaviour
         restartButton.onClick.AddListener(RestartGame);
         backToMenuButton.onClick.AddListener(BackToMenu);
         quitButton.onClick.AddListener(QuitGame);
+
+        lSPlayAgainButton.onClick.AddListener(PlayAgain);
+        lSBackToMenu.onClick.AddListener(BackToMenu);
+        lSQuitGame.onClick.AddListener(QuitGame);
     }
 
     
 
     void Update()
     {
+
+        EnableLoseScreen();
+        HighScoreUpdate();
+
+
         if (!GameManager.inGame)
         {
             textDelay.text = GameManager.delayStartGame.ToString();
@@ -68,6 +90,11 @@ public class UIManager : MonoBehaviour
         pausePanel.SetActive(false);
         Time.timeScale = 1.0f;
     }
+
+    private void PlayAgain()
+    {
+        SceneManager.LoadScene("GameScene");
+    }
     private void RestartGame()
     {
         GameManager.fishCoins = 0;
@@ -82,4 +109,21 @@ public class UIManager : MonoBehaviour
     {
       Application.Quit();   
     }
+
+
+
+    private void EnableLoseScreen()
+    {
+        if (checkCollision.isDead == true)
+        {
+            LoseScreen.enabled = true;
+            Time.timeScale = 0.0f;
+        }
+    }
+    private void HighScoreUpdate()
+    {
+        textHighScoreNumber.text = GameManager.highscore.ToString();
+    }
+
+
 }
