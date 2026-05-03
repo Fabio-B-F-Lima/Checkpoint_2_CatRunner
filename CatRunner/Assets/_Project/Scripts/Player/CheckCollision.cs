@@ -10,6 +10,8 @@ public class CheckCollision : MonoBehaviour
     {
         if (collision.gameObject.tag == "Obstacles")
         {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.deathSound);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.hitSound);
             isDead = true;
         }
     }
@@ -19,6 +21,7 @@ public class CheckCollision : MonoBehaviour
         if (other.gameObject.tag == "Coin")
         {
             GameManager.Instance.AddCoin(1);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.coinSound);
             Destroy(other.gameObject);
         }
         else if (other.gameObject.tag == "Enter" && player.speed < player.maxSpeed)

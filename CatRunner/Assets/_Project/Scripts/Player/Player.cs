@@ -83,6 +83,7 @@ public class Player : MonoBehaviour
         if (OnGround())
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.jumpSound);
         }
     }
 

@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text textDelay;
 
     [Header("Canvas HUD")]
-    [SerializeField] private Text fishCoinNumberText;
+    [SerializeField] private Text fishCoinNumberText, textHUDScore;
     [SerializeField] private Canvas HUD;
     [SerializeField] private Button pauseButton, closePauseScreenButton, restartButton, backToMenuButton, quitButton;
     [SerializeField] private GameObject pausePanel;
@@ -20,12 +20,14 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private CheckCollision checkCollision;
     [SerializeField] private Button lSPlayAgainButton, lSBackToMenu, lSQuitGame;
-    [SerializeField] private Text textHighScoreNumber; 
+    [SerializeField] private Text textCoinHighScoreNumber, textScore, textHighScore; 
+    
 
 
     
     void Start()
     {
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.countSound);
         Time.timeScale = 1.0f;
 
         canvasDelay.enabled = true;
@@ -50,9 +52,10 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-
-        EnableLoseScreen();
+        ScoreUpdate();
         HighScoreUpdate();
+        EnableLoseScreen();
+        CoinHighScoreUpdate();
 
 
         if (!GameManager.inGame)
@@ -120,9 +123,19 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 0.0f;
         }
     }
-    private void HighScoreUpdate()
+    private void CoinHighScoreUpdate()
     {
-        textHighScoreNumber.text = GameManager.highscore.ToString();
+        textCoinHighScoreNumber.text = GameManager.coinHighscore.ToString();
+    }
+
+    void ScoreUpdate()
+    {
+        textScore.text = GameManager.score.ToString() + "m";
+        textHUDScore.text = GameManager.score.ToString() + "m";
+    }
+    void HighScoreUpdate()
+    {
+    textHighScore.text = GameManager.highScore.ToString() + "m";
     }
 
 

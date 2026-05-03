@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+
+
+    [SerializeField] Transform playerTramsform;
     public static int delayStartGame = 3;
     public static bool inGame = false;
-    public static int fishCoins = 0, highscore = 0;
+    public static int fishCoins = 0, coinHighscore = 0;
+    public static int score, highScore;
 
     public static GameManager Instance;
     private void Awake()
@@ -22,7 +26,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        SetHighscore();
+        Score();
+        SetCoinHighscore();
+        SetHighScore();
     }
 
     IEnumerator StartGame()
@@ -44,11 +50,22 @@ public class GameManager : MonoBehaviour
        
     }
 
-    public void SetHighscore()
+    public void SetCoinHighscore()
     {
-        if (fishCoins > highscore)
+        if (fishCoins > coinHighscore)
         {
-            highscore = fishCoins;
+            coinHighscore = fishCoins;
         }
     }
+
+    public void SetHighScore()
+    {
+        if (score > highScore)
+            highScore = score;
+    }
+    public void Score()
+    {
+        score = Mathf.FloorToInt(playerTramsform.position.z);
+    }
+
 }
